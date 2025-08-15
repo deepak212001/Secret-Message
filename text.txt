@@ -1,0 +1,19 @@
+Next js edge runtime hsi means ki jab jab request aayegi to hi chalta hai 
+to esliye hi database bhi hamera connect nhi rhata hai 
+expressjs me hamesa chali hai to issue nhi aati thi 
+aur nextjs me jo function likhte hai vo ontme hi run hote hai 
+par express me continuly chalti hi rhti hai 
+to hamesa database onnect nhi hota hai jab jab reqeust aati hai us time hi connect
+par ek request diya to connect huaa and 1sec bad fir request to fir db already connect hai to check ki db connect if not then connect ka code run karo
+
+
+ye model me jo schmea likhte hai ye mongoose me likhte hai 
+
+par ye jo schemas me schema likhege vo kisi aur me likhege
+zod use hoga yaha 
+jab user signup karega to us time validation chahiye 
+mongoose me validation hai par vo pure user me hai 
+sirf singup ya ek particalaur time pe nhi hota 
+
+validation means ki username ki jaga username hi hai na kuchh aur to nhi ye sab use karte hai 
+to ham ZOD lib. use karte hai
