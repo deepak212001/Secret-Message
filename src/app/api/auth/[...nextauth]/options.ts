@@ -69,13 +69,13 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     //  yaha pe ha par db se data na le to user se token me aur fir token se session me daal dena hai data
-    // ab token ya session me se ek ho to user ki details le skte hai 
-    // aur yaha pe type bta rhe hai next-auth.d.ts me 
+    // ab token ya session me se ek ho to user ki details le skte hai
+    // aur yaha pe type bta rhe hai next-auth.d.ts me
   },
 
   pages: {
     signIn: "/sign-in",
-    // pages  yaha /auth/singin kar ke aata to yaha pe overwrite kar diya hai 
+    // pages  yaha /auth/singin kar ke aata to yaha pe overwrite kar diya hai
     // ab /sign-in pe jayege to hi ho jayega
   },
 

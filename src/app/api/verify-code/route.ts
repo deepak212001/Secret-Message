@@ -3,21 +3,21 @@ dbConnect();
 
 // import { NextRequest, NextResponse } from "next/server";
 import UserModel from "@/model/user.model";
-import bcrypt from "bcryptjs";
 
 export async function POST(req: Request) {
   try {
     const { username, code } = await req.json();
+    console.log("details ", { username, code });
     const decodedUsername = decodeURIComponent(username);
     // ye url ko decode kar deta hai means  sappce hota hai to uri %20 kar deta hai to vo hata deta hai
     // vaise yaha eski jruri nhi hai par bahut jagah hoti hai
 
-    const user = await UserModel.findOne({ username: decodedUsername });
+    const user = await UserModel.findOne({ username: username });
     if (!user) {
       return Response.json(
         {
           success: false,
-          Message: "User not found",
+          message: "User not found",
         },
         { status: 404 }
       );
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       return Response.json(
         {
           success: true,
-          Message: "User verified successfully",
+          message: "User verified successfully",
         },
         { status: 200 }
       );
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
       return Response.json(
         {
           success: false,
-          Message: "OTP is invalid",
+          message: "OTP is invalid",
         },
         { status: 400 }
       );
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
       return Response.json(
         {
           success: false,
-          Message: "Verification Code is expired",
+          message: "Verification Code is expired",
         },
         { status: 400 }
       );
@@ -60,7 +60,7 @@ export async function POST(req: Request) {
     return Response.json(
       {
         success: false,
-        Message: "Failed to Verify user",
+        message: "Failed to Verify user",
       },
       { status: 500 }
     );
