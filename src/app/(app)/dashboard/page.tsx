@@ -1,12 +1,7 @@
-'use client'
-import React from 'react'
+import React from "react";
 
 const page = () => {
-  return (
-    <div>
-      ygkjhsadjlas
-    </div>
-  )
-}
+  return <div>dfdsffd</div>;
+};
 
-export default page
+export default page;
