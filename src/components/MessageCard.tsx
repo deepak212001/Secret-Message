@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import axios, { AxiosError } from "axios";
-// import dayjs from "dayjs";
+import dayjs from "dayjs";
 import { X } from "lucide-react";
 import { Message } from "@/model/user.model";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -43,7 +43,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
   };
 
   return (
-    <Card className="card-bordered">
+    <Card className="card-bordered bg-gradient-to-b from-gray-500 to-gray-800 text-white">
       <CardHeader>
         <div className="flex justify-between items-center">
           <CardTitle>{message.content}</CardTitle>

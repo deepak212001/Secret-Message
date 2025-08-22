@@ -2,6 +2,7 @@ import mongoose, { Schema, Document } from "mongoose";
 // document use  typesafety ke liye
 
 export interface Message extends Document {
+  _id: string;
   content: string;
   createdAt: Date;
 }
@@ -81,6 +82,5 @@ const UserModel =
 //  mongoose.Model<User> means btata hai ki vo aayega uska type model aayega vo bhi user type ka  ye hai data type
 
 // <User> ye data type hai
-
 
 export default UserModel;

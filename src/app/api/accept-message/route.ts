@@ -6,7 +6,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
 import { User } from "next-auth";
 
-
 // getServerSession used for find currently login user
 // post for currently user can toggle accepting message
 export async function POST(req: Request) {
@@ -14,6 +13,7 @@ export async function POST(req: Request) {
   //   session are in authOption
   //   now we get the session and the session take the user detail
   const user = session?.user;
+  console.log("user ac ", user);
   if (!session || !session.user) {
     return Response.json(
       {
@@ -33,16 +33,17 @@ export async function POST(req: Request) {
       { status: 400 }
     );
   }
-  const { acceptingMessages } = await req.json();
+  const { acceptMessages } = await req.json();
 
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(
       userId,
       {
-        isAcceptingMessages: acceptingMessages,
+        isAcceptingMessages: acceptMessages,
       },
       { new: true } // es se updated document return hoga
     );
+    console.log("updatedUser ", updatedUser);
     if (!updatedUser) {
       return Response.json(
         {

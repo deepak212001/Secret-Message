@@ -10,6 +10,8 @@ import mongoose from "mongoose";
 export async function GET(req: Request) {
   const session = await getServerSession(authOptions);
   const user = session?.user;
+  // console.log("session ", session);
+  // console.log("user ", user);
   if (!session || !session.user) {
     return Response.json(
       {
@@ -25,6 +27,7 @@ export async function GET(req: Request) {
   // to ab ham se mongose se lenge
   const userId = new mongoose.Types.ObjectId(user._id);
   // SO ab se convert hoke jayega
+  console.log("userId ", userId);
   if (!userId) {
     return Response.json(
       {
@@ -43,8 +46,9 @@ export async function GET(req: Request) {
       { $sort: { "messages.creadtedAt": -1 } },
       { $group: { _id: "$_id", messages: { $push: "$messages" } } },
     ]);
-
-    if(!user || user.length === 0) {
+    console.log("user message ", user[0].messages[0]._id) ;
+    console.log("user message type ", typeof user[0].messages) ;
+    if (!user || user.length === 0) {
       return Response.json(
         {
           success: false,
@@ -55,13 +59,12 @@ export async function GET(req: Request) {
     }
 
     return Response.json(
-        {
-          success: true,
-          messages: user[0].messages,
-        },
-        { status: 404 }
-      );
-
+      {
+        success: true,
+        messages: user[0].messages,
+      },
+      { status: 404 }
+    );
   } catch (error) {
     console.error("Failed to retrieve messages", error);
     return Response.json(

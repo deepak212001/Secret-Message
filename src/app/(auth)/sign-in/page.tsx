@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { singInSchema } from "@/schemas/signin.schema";
+import { signInSchema } from "@/schemas/signin.schema";
 import { ApiResponse } from "@/types/ApiResponse";
 import { ToastContainer, toast } from "react-toastify";
 import { Loader2 } from "lucide-react";
@@ -19,16 +19,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { signIn } from "next-auth/react";
+import { BackgroundBeams } from "@/components/ui/background-beams";
 
 const page = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  // means ye 300 millisec bad value set karega
-
   const router = useRouter();
 
   // zod implementation
-  const form = useForm<z.infer<typeof singInSchema>>({
-    resolver: zodResolver(singInSchema),
+  const form = useForm<z.infer<typeof signInSchema>>({
+    resolver: zodResolver(signInSchema),
     defaultValues: {
       identifier: "",
       password: "",
@@ -36,8 +34,9 @@ const page = () => {
     // vo control karna hai vo dalna hai
   });
 
-  const onSubmit = async (data: z.infer<typeof singInSchema>) => {
+  const onSubmit = async (data: z.infer<typeof signInSchema>) => {
     //   ye nextauth se tha to
+    console.log("data ", data);
     const result = await signIn("credentials", {
       redirect: false,
       identifier: data.identifier,
@@ -51,7 +50,8 @@ const page = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-800">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+      <BackgroundBeams className="absolute inset-0 z-0" />
+      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md relative z-10">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
             Welcome Back to True Feedback
@@ -88,24 +88,17 @@ const page = () => {
                 </FormItem>
               )}
             />
-            <Button className="w-full" type="submit" >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Please wait...
-                </>
-              ) : (
-                "Sign Up"
-              )}
+            <Button className="w-full" type="submit">
+              Sign In
             </Button>
           </form>
         </Form>
         <ToastContainer />
         <div className="text-center mt-4">
           <p>
-            Already a member?{" "}
-            <Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
-              Sign in
+            Not a member yet?{" "}
+            <Link href="/sign-up" className="text-blue-600 hover:text-blue-800">
+              Sign Up
             </Link>
           </p>
         </div>

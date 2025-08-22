@@ -13,7 +13,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Emial", type: "text", placeholder: "Your Email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: any, req): Promise<any> {
+      async authorize(credentials: any): Promise<any> {
         await dbConnect();
 
         try {
@@ -33,7 +33,7 @@ export const authOptions: NextAuthOptions = {
           }
 
           const isValid = await bcrypt.compare(
-            credentials?.password,
+            credentials.password,
             user.password
           );
           if (!isValid) {
