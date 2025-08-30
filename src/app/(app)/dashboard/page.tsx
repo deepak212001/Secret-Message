@@ -19,7 +19,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 
-const page = () => {
+const Page = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSwitchLoading, setIsSwitchLoading] = useState(false);
@@ -187,4 +187,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

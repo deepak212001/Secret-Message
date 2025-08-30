@@ -21,7 +21,7 @@ import { Input } from "@/components/ui/input";
 import { signIn } from "next-auth/react";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
 
   // zod implementation
@@ -107,4 +107,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
