@@ -3,10 +3,10 @@ import { getServerSession } from "next-auth/next";
 import dbConnect from "@/lib/dbconnect";
 import { User } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/options";
-import { NextResponse } from "next/server";
+import { NextRequest,NextResponse } from "next/server";
 
 export async function DELETE(
-  req: Request,
+  req: NextRequest,
   context: { params: { messageid: string } }
 ) {
   const { messageid } = context.params;
