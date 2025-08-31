@@ -4,14 +4,9 @@ import dbConnect from "@/lib/dbconnect";
 import { User } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/options";
 import { NextRequest, NextResponse } from "next/server";
-import type { RouteHandlerContext } from "next/dist/server/future/route-handlers/route-handler-context";
 
-
-export async function DELETE(
-  req: NextRequest,
-  context: RouteHandlerContext<{ messageid: string }>
-) {
-  const { messageid } = context.params;
+export async function DELETE(req: NextRequest, context: any) {
+  const { messageId } = context.params;
   await dbConnect();
 
   const session = await getServerSession(authOptions);
@@ -27,7 +22,7 @@ export async function DELETE(
   try {
     const updateResult = await UserModel.updateOne(
       { _id: _user._id },
-      { $pull: { messages: { _id: messageid } } }
+      { $pull: { messages: { _id: messageId } } }
     );
 
     if (updateResult.modifiedCount === 0) {
