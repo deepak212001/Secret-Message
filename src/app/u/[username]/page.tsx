@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { CardHeader, CardContent, Card } from "@/components/ui/card";
 // import { useCompletion } from 'ai/react';
 import {
   Form,
@@ -25,14 +24,14 @@ import { useParams } from "next/navigation";
 import { messageSchema } from "@/schemas/message.schema";
 import { toast } from "react-toastify";
 
-const specialChar = "||";
+// const specialChar = "||";
 
-const parseStringMessages = (messageString: string): string[] => {
-  return messageString.split(specialChar);
-};
+// const parseStringMessages = (messageString: string): string[] => {
+//   return messageString.split(specialChar);
+// };
 
-const initialMessageString =
-  "What's your favorite movie?||Do you have any pets?||What's your dream job?";
+// const initialMessageString =
+//   "What's your favorite movie?||Do you have any pets?||What's your dream job?";
 
 export default function SendMessage() {
   const params = useParams<{ username: string }>();

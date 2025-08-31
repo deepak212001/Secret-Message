@@ -4,10 +4,9 @@ dbConnect();
 import UserModel from "@/model/user.model";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
-import { User } from "next-auth";
 import mongoose from "mongoose";
 
-export async function GET(req: Request) {
+export async function GET() {
   const session = await getServerSession(authOptions);
   const user = session?.user;
   // console.log("session ", session);
@@ -46,8 +45,8 @@ export async function GET(req: Request) {
       { $sort: { "messages.creadtedAt": -1 } },
       { $group: { _id: "$_id", messages: { $push: "$messages" } } },
     ]);
-    console.log("user message ", user[0].messages[0]._id) ;
-    console.log("user message type ", typeof user[0].messages) ;
+    console.log("user message ", user[0].messages[0]._id);
+    console.log("user message type ", typeof user[0].messages);
     if (!user || user.length === 0) {
       return Response.json(
         {

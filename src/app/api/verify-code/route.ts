@@ -8,7 +8,6 @@ export async function POST(req: Request) {
   try {
     const { username, code } = await req.json();
     console.log("details ", { username, code });
-    const decodedUsername = decodeURIComponent(username);
     // ye url ko decode kar deta hai means  sappce hota hai to uri %20 kar deta hai to vo hata deta hai
     // vaise yaha eski jruri nhi hai par bahut jagah hoti hai
 

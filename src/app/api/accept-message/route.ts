@@ -4,7 +4,7 @@ dbConnect();
 import UserModel from "@/model/user.model";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
-import { User } from "next-auth";
+
 
 // getServerSession used for find currently login user
 // post for currently user can toggle accepting message

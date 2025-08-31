@@ -1,10 +1,9 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { singUpSchema } from "@/schemas/singup.schema";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -39,8 +38,9 @@ const VerifyAccount = () => {
     } catch (error) {
       console.error("error in verify in fd ", error);
       const axiosError = error as AxiosError<ApiResponse>;
-      console.log('error in verify ',axiosError)
-      let errorMessage = axiosError.response?.data.message || "ERROR in verify";
+      console.log("error in verify ", axiosError);
+      const errorMessage =
+        axiosError.response?.data.message || "ERROR in verify";
       toast(`${errorMessage}`);
     }
   };
