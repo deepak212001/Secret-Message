@@ -61,7 +61,7 @@ export async function sendVerificationEmail(
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: "True Feedback Verification Code",
+      subject: "Secret Message Verification Code",
       // html: `dfdfg ${username}, ${verifyCode}`,
       html: emailHtml,
     };
