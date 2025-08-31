@@ -15,8 +15,6 @@ import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { acceptMessageSchema } from "@/schemas/acceptmessage.schema";
 import { toast, ToastContainer } from "react-toastify";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 
 const Page = () => {
