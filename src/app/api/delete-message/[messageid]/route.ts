@@ -4,10 +4,12 @@ import dbConnect from "@/lib/dbconnect";
 import { User } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/options";
 import { NextRequest, NextResponse } from "next/server";
+import type { RouteHandlerContext } from "next/dist/server/future/route-handlers/route-handler-context";
+
 
 export async function DELETE(
   req: NextRequest,
-  context: { params: { messageid: string } }
+  context: RouteHandlerContext<{ messageid: string }>
 ) {
   const { messageid } = context.params;
   await dbConnect();
