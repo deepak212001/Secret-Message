@@ -40,7 +40,7 @@ const Page = () => {
     setIsSwitchLoading(true);
     try {
       const response = await axios.get<ApiResponse>("/api/accept-message");
-      setValue("acceptMessages", response.data?.isAcceptingMessages!);
+      setValue("acceptMessages", response.data?.isAcceptingMessages! ?? false);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast(
