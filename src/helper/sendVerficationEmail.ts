@@ -74,8 +74,8 @@ export async function sendVerificationEmail(
       isAcceptingMessages: true,
       message: "Verification email send successfully",
     };
-  } catch (error: any) {
-    console.error("Error sending email:", error.message);
+  } catch (error: unknown) {
+    console.error("Error sending email:");
     return {
       success: false,
       isAcceptingMessages: false,

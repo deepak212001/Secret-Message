@@ -18,23 +18,23 @@ import { toast, ToastContainer } from "react-toastify";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 
 const Page = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSwitchLoading, setIsSwitchLoading] = useState(false);
+  let [messages, setMessages] = useState<Message[]>([]);
+  let [isLoading, setIsLoading] = useState(false);
+  let [isSwitchLoading, setIsSwitchLoading] = useState(false);
 
   const handleDeleteMessage = (messageId: string) => {
     setMessages(messages.filter((message) => message._id !== messageId));
   };
 
-  const { data: session } = useSession();
+  let { data: session } = useSession();
 
-  const form = useForm({
+  let form = useForm({
     resolver: zodResolver(acceptMessageSchema),
   });
   //  ye toggle switch form me hi hoga
-  const { register, watch, setValue } = form;
+  let { register, watch, setValue } = form;
   // ye watch hi toggle ko karega
-  const acceptMessages = watch("acceptMessages");
+  let acceptMessages = watch("acceptMessages");
 
   const fetchAcceptMessages = useCallback(async () => {
     setIsSwitchLoading(true);
