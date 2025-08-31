@@ -41,9 +41,10 @@ export const authOptions: NextAuthOptions = {
           }
 
           return user;
-        } catch (error: any) {
-          console.log("error in auth ", error);
-          throw new Error(error);
+        } catch (error: unknown) {
+          console.error("Error in auth:", error);
+          if (error instanceof Error) throw new Error(error.message);
+          throw new Error("Authentication failed");
         }
       },
     }),
