@@ -1,3 +1,4 @@
+"use server";
 import dbConnect from "@/lib/dbconnect";
 dbConnect();
 
@@ -42,7 +43,7 @@ export async function GET() {
     const user = await UserModel.aggregate([
       { $match: { _id: userId } },
       { $unwind: "$messages" },
-      { $sort: { "messages.creadtedAt": 1 } },
+      { $sort: { "messages.createdAt": -1 } },
       { $group: { _id: "$_id", messages: { $push: "$messages" } } },
     ]);
     console.log("user message ", user[0].messages[0]._id);
@@ -51,7 +52,7 @@ export async function GET() {
       return Response.json(
         {
           success: false,
-          message: "user not founf aur No messages found",
+          message: "user not found aur No messages found",
         },
         { status: 404 }
       );
@@ -62,7 +63,7 @@ export async function GET() {
         success: true,
         messages: user[0].messages,
       },
-      { status: 404 }
+      { status: 200 }
     );
   } catch (error) {
     console.error("Failed to retrieve messages", error);
